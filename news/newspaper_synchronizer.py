@@ -46,6 +46,3 @@ def sync_website(source, url):
                 retry += 1
                 print(e)
                 # Logger.error(e)
-
-
-sync()
