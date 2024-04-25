@@ -8,14 +8,17 @@ max_retry = 3
 
 def sync():
     print("正在同步新闻...")
+    # Logger.info("正在同步新闻...")
     for source, url in urls.items():
         sync_website(source, url)
     print("同步完成")
+    # Logger.info("同步完成")
 
 
 def sync_website(source, url):
     # 构建源
     news_source = newspaper.build(url, language='zh')
+    # Logger.info("新闻数量：%s " % news_source.size())
     print("新闻数量：%s " % news_source.size())
     # 种类
     # for category in nyt.category_urls():
@@ -28,6 +31,7 @@ def sync_website(source, url):
     # 下载文章内容
     for article in news_source.articles:
         print("url:%s" % article.url)
+        # Logger.info("url:%s" % article.url)
         retry = 0
         while retry < max_retry and article.download_state != 2:
             try:
@@ -41,6 +45,7 @@ def sync_website(source, url):
             except Exception as e:
                 retry += 1
                 print(e)
+                # Logger.error(e)
 
 
 sync()
