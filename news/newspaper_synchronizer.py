@@ -15,7 +15,7 @@ def sync():
 
 def sync_website(source, url):
     # 构建源
-    news_source = newspaper.build(url, language='zh', memoize_articles=False)
+    news_source = newspaper.build(url, language='zh')
     print("新闻数量：%s " % news_source.size())
     # 种类
     # for category in nyt.category_urls():
